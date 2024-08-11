@@ -18,12 +18,15 @@ public class MergeSort{
         int[] L = new int[nL];
         int[] R = new int[nR];
 
-        for (int i = 0; i < nL; i++){
-            L[i] = arr[p + i];
-        }
-        for (int j = 0; j < nR; j++){
-            R[j] = arr[q + 1 + j];
-        }
+        System.arraycopy(arr, p, L, 0, nL);
+        System.arraycopy(arr, q + 1, R, 0, nR);
+
+        // for (int i = 0; i < nL; i++){
+        //     L[i] = arr[p + i];
+        // }
+        // for (int j = 0; j < nR; j++){
+        //     R[j] = arr[q + 1 + j];
+        // }
         printArray(L);
         printArray(R);
 
