@@ -5,12 +5,10 @@ interface A{
 
 public class FunctionalInterfaces{
     public static void main(String[] args) {
-        A objA = new A(){
-            @Override
-            public void show(){
+        //using the labda expressions
+        A objA = () -> { 
                 System.out.println("In show");
-            }
-        };
+            };
         objA.show();
     }
 }
