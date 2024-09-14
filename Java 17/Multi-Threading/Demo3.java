@@ -26,7 +26,9 @@ public class Demo3{
 
 class Counter{
     int count = 0;
-    public void increment(){
+
+    //the "synchronized" keyword ensures thread safety for this method
+    public synchronized void increment(){
         count++;
     }
 }
