@@ -26,12 +26,7 @@ public class Sorting{
         students.add(new Student("Thehassa", 22));
         students.add(new Student("Hansi", 21));
 
-        Comparator<Student> comStud = (Comparator<Student>) (Student s1, Student s2) -> {
-            if(s1.age > s2.age)
-                return 1;
-            else    
-                return -1;
-        };
+        Comparator<Student> comStud = (s1, s2) -> s1.age > s2.age?1:-1;
 
         Collections.sort(students, comStud);
         System.out.println(students);
