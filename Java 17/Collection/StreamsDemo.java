@@ -1,6 +1,8 @@
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.function.Function;
+import java.util.function.Predicate;
 
 public class StreamsDemo{
     public static void main(String[] args) {
@@ -12,13 +14,16 @@ public class StreamsDemo{
         // Stream<Integer> s3 = s2.map(n -> n*2);
         // int result = s3.reduce(0, (c,e) -> c+e);
 
+        Predicate<Integer> predicate = n -> n%2 == 0;
+        
+        Function<Integer, Integer> function = n -> n*2;
+
         int result = nums.stream()
-                            .filter(n -> n%2==0)
-                            .map(n -> n*2)
+                            .filter(predicate)
+                            .map(function)
                             .reduce(0, (c,e) -> c+e);
 
-        // s2.forEach(n -> System.out.println(n));
-        // s3.forEach(n -> System.out.println(n));
+        
         System.out.println(result);
 
     }
