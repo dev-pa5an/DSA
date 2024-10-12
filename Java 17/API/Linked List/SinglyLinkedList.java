@@ -1,9 +1,3 @@
-
-
-
-
-
-
 public class SinglyLinkedList{
 
     private ListNode head;
@@ -17,7 +11,7 @@ public class SinglyLinkedList{
             this.next = null;
         }
     } 
-    void showSSL(){
+    public void showSSL(){
         ListNode current = head;
         while (current != null){
             System.out.print(current.data + " --> ");
@@ -28,7 +22,7 @@ public class SinglyLinkedList{
         }
     }
 
-    int findLenght(){
+    public int findLenght(){
         if (head == null){
             return 0;
         }
@@ -46,7 +40,7 @@ public class SinglyLinkedList{
         newNode.next = head;
         head = newNode;
     }
-    void insertLast(int data){
+    public void insertLast(int data){
         ListNode newNode = new ListNode(data);
         if (head == null){
             head = newNode;
@@ -72,7 +66,7 @@ public class SinglyLinkedList{
             current.next = newNode;
         }
     }
-    void deleteFirst(){
+    public void deleteFirst(){
         if (head == null) return;
         head = head.next;
     }
@@ -112,6 +106,45 @@ public class SinglyLinkedList{
         }
         return false;
     }
+    public void reverse(){
+
+        ListNode current = head;
+        ListNode previous = null;
+
+        while (current != null){
+            ListNode nextNode = current.next;
+            current.next = previous;
+            previous = current;
+            current = nextNode;
+        }
+        head = previous;
+    }
+    public void removeDuplicates(){
+        ListNode current = head;
+        while (current != null && current.next != null){
+            if (current.data == current.next.data){
+                current.next = current.next.next;
+            } else {
+                current = current.next;
+            }
+        }
+    }
+    //insert a node in a sorted singly linked list
+    public void insertSorted(int value){
+        ListNode current = head;
+        while (current != null && current.next != null){
+            if (value >= current.data && value <= current.next.data){
+                ListNode temp = current.next;
+                current.next = new ListNode(value);
+                current.next.next = temp;
+                return;
+            }
+            current = current.next;
+        }
+        if (current != null && current.next == null){
+            current.next = new ListNode(value);
+        }
+    }
     public static void main(String[] args) {
 
         SinglyLinkedList sll = new SinglyLinkedList();
@@ -132,28 +165,33 @@ public class SinglyLinkedList{
         System.out.println("adding a new node at the beginning");
         sll.insertFirst(10);
         sll.showSSL();
+
         System.out.println();
         //insert a new node at a given position
         System.out.println("adding a new node at a given position");
         sll.insertAt(80, 4);
         sll.showSSL();
 
+        System.out.println();
         System.out.println("deleting the first node");
         //delete the first node
         sll.deleteFirst();
         sll.showSSL();
 
+        System.out.println();
         System.out.println("deleting the last node");
         //delete the last node
         sll.deleteLast();
         sll.showSSL();
 
+        System.out.println();
         //delete a node at a given position
         int position = 1;
-        System.out.println("delting the node at position" + position);
+        System.out.println("delting the node at position " + position);
         sll.deleteAt(position);
         sll.showSSL();
 
+        System.out.println();
         //search for a value
         int searchkey = 3;
         if (sll.exists(searchkey)){
@@ -163,7 +201,33 @@ public class SinglyLinkedList{
             System.out.print(searchkey + " does not exist in the singly linked list ");
             sll.showSSL();
         }
-        
+        System.out.println();
+        //reverse a SLL
+        System.out.println("reversing the singly linked list");
+        sll.reverse();
+        sll.showSSL();
+        System.out.println();
 
+        //remove duplicates in a sorted linked list
+        SinglyLinkedList sll2 = new SinglyLinkedList();
+        sll2.head = new ListNode(1);
+        ListNode n2 = new ListNode(5);
+        ListNode n3 = new ListNode(10);
+        ListNode n4 = new ListNode(13);
+        ListNode n5 = new ListNode(23);
+
+        sll2.head.next = n2;
+        n2.next = n3;
+        n3.next = n4;
+        n4.next = n5;
+        
+        sll2.showSSL();
+        // sll2.removeDuplicates();
+        // sll2.showSSL();
+
+        //add a node in a sorted linked list
+        sll2.insertSorted(24);
+        sll2.insertSorted(20);
+        sll2.showSSL();
     }
 }
