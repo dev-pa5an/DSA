@@ -212,6 +212,7 @@ public class SinglyLinkedList{
         }
         return null;
     }
+    //using the Floyd's cycle detection algorithm
     private ListNode getStartingNode(ListNode slowPtr) {
         ListNode temp = head;
         while(temp != slowPtr){
