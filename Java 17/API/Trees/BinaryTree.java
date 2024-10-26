@@ -65,6 +65,38 @@ public class BinaryTree{
             if (temp.left != null) stack.push(temp.left);
         }
     }
+    //post order traversal recursive approach
+    public void postOrder(TreeNode root){
+        if (root != null){
+            postOrder(root.left);
+            postOrder(root.right);
+            System.out.print(root.data + " ");
+        }
+    }
+    //post order traversal iterative approach
+    public void postOrderIter(TreeNode root){
+        System.out.println("This is post-order iterative binary traversal");
+        Stack<TreeNode> stack = new Stack<>(); 
+        TreeNode current = root; 
+        while (!stack.isEmpty() || current != null){
+            if (current != null){
+                stack.push(current);
+                current = current.left; 
+            } else {
+                TreeNode temp = stack.peek().right; 
+                if (temp == null){
+                    temp = stack.pop(); //
+                    System.out.print(temp.data + " "); 
+                    while (!stack.isEmpty() && temp == stack.peek().right){
+                        temp = stack.pop();
+                        System.out.print(temp.data + " ");
+                    }
+                } else {
+                    current = temp;
+                }
+            }
+        }
+    }
     //in-order traversal recursive approach
     public void inOrder(TreeNode root){
         if (root != null){
@@ -97,6 +129,8 @@ public class BinaryTree{
         bt.inOrder(bt.root);
         System.out.println();
         bt.levelOrder(bt.root);
+        System.out.println();
+        bt.postOrderIter(bt.root);
         System.out.println();
         
     }
