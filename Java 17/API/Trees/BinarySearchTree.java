@@ -5,7 +5,7 @@ public class BinarySearchTree{
     private TreeNode root;
 
     private class TreeNode{
-        private int data;
+        private final int data;
         private TreeNode left;
         private TreeNode right;
 
@@ -18,7 +18,7 @@ public class BinarySearchTree{
     public void insert(int value){
         this.root = insert(root, value);
     }
-    public TreeNode insert(TreeNode root, int value){
+    private TreeNode insert(TreeNode root, int value){
         if (root == null){
             root = new TreeNode(value);
             return root;
@@ -52,7 +52,7 @@ public class BinarySearchTree{
     public void levelOrderTraversal(){
         levelOrderTraversal(root);
     }
-    public TreeNode search(int key){
+    private TreeNode search(int key){
         return search(root, key);
     }
     private TreeNode search(TreeNode root, int key){
